@@ -1,5 +1,7 @@
 import pygame
 
+
+
 def main():
     pygame.init()
     clock = pygame.time.Clock()
@@ -9,8 +11,8 @@ def main():
     z = 0
 
     pygame.display.set_caption("Rogue-Like game")
-    width = 800
-    height = 600
+    width = 1920
+    height = 1080
     window = pygame.display.set_mode((width, height))
     while True:
         for event in pygame.event.get():
@@ -29,4 +31,4 @@ def main():
         clock.tick(60)
 
 if __name__ == "__main__":
-    main() #tak to je crazy
+    main()
