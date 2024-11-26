@@ -2,31 +2,24 @@ import pygame
 import inputHandler as IH
 import levelLoader as LL
 import time
+
 global image
 
 def main():
     pygame.init()
     clock = pygame.time.Clock()
     position = [0,0]
+    
     timerStart = time.time()
     pygame.display.set_caption("Rogue-Like game")
     width = 768  # 16
     height = 576 # 12
-
-    position = [0,0]
-
-    timerStart = time.time()
-    pygame.display.set_caption("Rogue-Like game")
-    width = 1920
-    height = 1080
     window = pygame.display.set_mode((width, height))
     window.fill((255,255,255))
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-        time2 = time.time()
-
         moveCharacter(position, window, color=(255,0,0))
         time2 = time.time()
 
