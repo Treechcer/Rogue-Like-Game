@@ -29,4 +29,4 @@ def main():
         clock.tick(60)
 
 if __name__ == "__main__":
-    main()
+    main() #tak to je crazy
