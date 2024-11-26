@@ -1,34 +1,39 @@
 import pygame
-
-
+import inputHandler as IH
+import time
 
 def main():
     pygame.init()
     clock = pygame.time.Clock()
 
-    x = 0
-    y = 0
-    z = 0
+    position = [0,0]
 
+    timerStart = time.time()
     pygame.display.set_caption("Rogue-Like game")
     width = 1920
     height = 1080
     window = pygame.display.set_mode((width, height))
+    window.fill((255,255,255))
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
         
-        xyz = (x % 256,y % 256,z % 256)
+        moveCharacter(position, window, color=(255,0,0))
+        time2 = time.time()
 
-        window.fill(xyz)
-
-        x += 1
-        z += 1
-        y += 1
+        if time2 - timerStart >= 0.15:
+            moveCharacter(position, window, color=(255,255,255))
+            position = IH.inputHandler(position)
+            moveCharacter(position, window, color=(255,0,0))
+            timerStart = time.time()
 
         pygame.display.flip()
-        clock.tick(60)
+        clock.tick(30)
+
+def moveCharacter(position, window, color):
+    tile = 48
+    pygame.draw.rect(window, color, (position[0] * tile, position[1] * tile, tile, tile))
 
 if __name__ == "__main__":
     main()
