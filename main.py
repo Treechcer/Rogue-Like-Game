@@ -1,8 +1,8 @@
 import pygame
-import random
-import InputHandler as IH
+import inputHandler as IH
 import levelLoader as LL
 import time
+import random
 from enemy import Enemy
 
 global image
@@ -21,7 +21,7 @@ def main():
             ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"]]
     pygame.init()
     clock = pygame.time.Clock()
-    position = [0,0]
+    position = [3,3]
     
     enemy_position = [random.randint(0, 15), random.randint(0, 11)]  #spawne enemaka
     enemy = Enemy(
@@ -32,36 +32,31 @@ def main():
         color=(255, 0, 0),
         speed=2
     )
+    wall = []
+
     timerStart = time.time()
     pygame.display.set_caption("Rogue-Like game")
-    width = 768  # 16
-    height = 576 # 12
+    width = 768  # 16 tileset
+    height = 576 # 12 tileset
     window = pygame.display.set_mode((width, height))
     window.fill((255,255,255))
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                return
-        moveCharacter(position, window, color=(255,0,0))
+
         time2 = time.time()
 
         if time2 - timerStart >= 0.15:
             moveCharacter(position, window, color=(255,255,255))
-            position = IH.inputHandler(position)
-            moveCharacter(position, window, color=(255,0,0))
+            wall = LL.loadLevel(window, level)
+            position = IH.inputHandler(position, wall)
+            draw_img(window, position)
             timerStart = time.time()
 
-        if time2 - timerStart >= 0.15:
-            moveCharacter(position, window, color=(255,255,255))
-            position = IH.inputHandler(position)
-            timerStart = time.time()
-            
-        LL.loadLevel(window)
-        draw_img(window, position)
-        
+
         pygame.display.flip()
-        clock.tick(30)
+        clock.tick(60)
 
 def moveCharacter(position, window, color):
     tile = 48
