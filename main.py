@@ -6,14 +6,27 @@ import time
 global image
 
 def main():
+    level = [["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
+            ["1","2","3","w","5","6","7","8","9","10","11","12","13","14","15","16"],
+            ["1","2","3","w","5","6","7","8","9","10","11","12","13","14","15","x"],
+            ["1","2","3","w","5","6","7","8","9","10","11","12","13","14","15","16"],
+            ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],
+            ["1","2","3","4","5","6","7","8","9","10","y","12","13","14","15","16"],
+            ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],
+            ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],
+            ["1","2","3","4","5","6","7","8","y","10","x","12","13","14","15","16"],
+            ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],
+            ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"]]
     pygame.init()
     clock = pygame.time.Clock()
-    position = [0,0]
+    position = [3,3]
+
+    wall = []
 
     timerStart = time.time()
     pygame.display.set_caption("Rogue-Like game")
-    width = 768  # 16
-    height = 576 # 12
+    width = 768  # 16 tileset
+    height = 576 # 12 tileset
     window = pygame.display.set_mode((width, height))
     window.fill((255,255,255))
     while True:
@@ -25,11 +38,12 @@ def main():
 
         if time2 - timerStart >= 0.15:
             moveCharacter(position, window, color=(255,255,255))
-            position = IH.inputHandler(position)
-            LL.loadLevel(window)
+            wall = LL.loadLevel(window, level)
+            position = IH.inputHandler(position, wall)
             draw_img(window, position)
             timerStart = time.time()
-        
+
+
         pygame.display.flip()
         clock.tick(60)
 
@@ -42,8 +56,6 @@ def draw_img(window, position):
     image = pygame.image.load("hero.png")
     image = pygame.transform.scale(image, (tile, tile))
     window.blit(image, (position[0] * tile, position[1] * tile))
-
-
 
 if __name__ == "__main__":
     main()
