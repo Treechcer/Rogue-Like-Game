@@ -31,7 +31,7 @@ def main():
     pygame.display.set_caption("Rogue-Like game")
     width = 768  # 16 tileset
     height = 576 # 12 tileset
-    window = pygame.display.set_mode((width, height))
+    window = pygame.display.set_mode((width, height), pygame.FULLSCREEN | pygame.SCALED)
     window.fill((255,255,255))
     while True:
         frameCount += 1
