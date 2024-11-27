@@ -3,9 +3,31 @@ import inputHandler as IH
 import levelLoader as LL
 import time
 import random
-from enemy import Enemy
+import math
 
 global image
+
+class Player:
+    def __init__(self, position):
+        self.rect = pygame.Rect(position[0] * 48, position[1] * 48, 48, 48)
+        
+class Enemy:
+    def __init__(self, x, y, width, height, image_path, speed):
+        self.rect = pygame.Rect(x, y, width, height)
+        self.image = pygame.image.load(image_path)
+        self.image = pygame.transform.scale(self.image, (width, height)) 
+        self.speed = speed
+
+    def follow_player(self, player):
+        dx = player.rect.centerx - self.rect.centerx
+        dy = player.rect.centery - self.rect.centery
+        distance = math.sqrt(dx**2 + dy**2)
+        if distance != 0:
+            self.rect.x += (dx / distance) * self.speed
+            self.rect.y += (dy / distance) * self.speed
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
 
 def main():
     level = [["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
@@ -21,6 +43,7 @@ def main():
             ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"]]
     pygame.init()
     clock = pygame.time.Clock()
+
     position = [3,3]
     
     enemy_position = [random.randint(0, 15), random.randint(0, 11)]  #spawne enemaka
@@ -29,8 +52,8 @@ def main():
         y=enemy_position[1] * 48,
         width=48,
         height=48,
-        color=(255, 0, 0),
-        speed=2
+        image_path="goblin.png",
+        speed=5
     )
     wall = []
 
@@ -52,8 +75,9 @@ def main():
             wall = LL.loadLevel(window, level)
             position = IH.inputHandler(position, wall)
             draw_img(window, position)
+            enemy.follow_player(Player(position))
+            enemy.draw(window)
             timerStart = time.time()
-
 
         pygame.display.flip()
         clock.tick(60)
