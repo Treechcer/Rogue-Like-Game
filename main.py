@@ -11,7 +11,7 @@ def main():
             ["1","2","3","w","5","6","7","8","9","10","11","12","13","14","15","x"],
             ["1","2","3","w","5","6","7","8","9","10","11","12","13","14","15","16"],
             ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],
-            ["1","2","3","4","5","6","7","8","9","10","y","12","13","14","15","16"],
+            ["1","2","3","4","5","6","7","8","9","10","ENEMY","12","13","14","15","16"],
             ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],
             ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],
             ["1","2","3","4","5","6","7","8","y","10","x","12","13","14","15","16"],
@@ -23,6 +23,8 @@ def main():
 
     wall = []
 
+    frameCount = 0
+
     timerStart = time.time()
     pygame.display.set_caption("Rogue-Like game")
     width = 768  # 16 tileset
@@ -30,6 +32,7 @@ def main():
     window = pygame.display.set_mode((width, height))
     window.fill((255,255,255))
     while True:
+        frameCount += 1
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -38,7 +41,7 @@ def main():
 
         if time2 - timerStart >= 0.15:
             moveCharacter(position, window, color=(255,255,255))
-            wall = LL.loadLevel(window, level)
+            wall = LL.loadLevel(window, level, frameCount, position)
             position = IH.inputHandler(position, wall)
             draw_img(window, position)
             timerStart = time.time()
