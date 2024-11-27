@@ -10,7 +10,10 @@ def loadLevel(window, level):
             elif level[col][row] == "y":
                 pygame.draw.rect(window, (10,200,10), (row * tile, col * tile, tile, tile))
             elif level[col][row] == "w":
-                pygame.draw.rect(window, (0,0,0), (row * tile, col * tile, tile, tile))
+                tile = 48
+                image = pygame.image.load("sprites/wall.png")
+                image = pygame.transform.scale(image, (tile, tile))
+                window.blit(image, (row * tile, col * tile))
                 wall.append((col, row))
     if wall != []:
         return wall

@@ -53,7 +53,7 @@ def moveCharacter(position, window, color):
 
 def draw_img(window, position):
     tile = 48
-    image = pygame.image.load("hero.png")
+    image = pygame.image.load("sprites/hero1.png")
     image = pygame.transform.scale(image, (tile, tile))
     window.blit(image, (position[0] * tile, position[1] * tile))
 
