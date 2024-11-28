@@ -10,7 +10,7 @@ def loadLevel(window, level, frameCount, position):
                 pygame.draw.rect(window, (0, 0, 50), (row * tile, col * tile, tile, tile))
             elif level[col][row] == "w":
                 drawObj(row, col, "wall.png", window)
-                wall.append((col, row))  # Ensure tuples are added
+                wall.append((col, row)) 
             elif level[col][row] == "Enemy":
                 drawObj(row, col, "ground.png", window)
                 drawObj(row, col, "goblin.png", window)
