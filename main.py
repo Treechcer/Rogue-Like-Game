@@ -21,7 +21,7 @@ def main():
             ]
     pygame.init()
     clock = pygame.time.Clock()
-    position = [3,3]
+    position = [3,3, True]
 
     wall = []
 
@@ -41,12 +41,16 @@ def main():
 
         time2 = time.time()
 
-        if time2 - timerStart >= 0.15:
+        position = IH.inputHandler(position, wall, timerStart, time2)
+        if position[2] == True:
             moveCharacter(position, window, color=(255,255,255))
             wall, frameCount = LL.loadLevel(window, level, frameCount, position)
-            position = IH.inputHandler(position, wall)
             draw_img(window, position)
             timerStart = time.time()
+            position[2] = False
+        else:
+            wall, frameCount = LL.loadLevel(window, level, frameCount, position)
+            draw_img(window, position)
 
 
         pygame.display.flip()
