@@ -44,4 +44,4 @@ Run the game:
 - Implement win/lose conditions and scoring.
 - Expand the game with multiple levels and items.
 - Contributions are welcome! Fork this repository and make it your own.
-- + more
+- and more
