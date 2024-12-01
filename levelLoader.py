@@ -7,7 +7,7 @@ def loadLevel(window, level, frameCount, position):
     wall = []
     enemies = []
     enemiesDone = 0
-    for row in range(16):
+    for row in range(22):
         for col in range(12):
             enemyCount = countEnemy(level)
             if level[col][row] == "w":

@@ -7,18 +7,18 @@ import time
 global image
 
 def main():
-    level = [["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
-            [" "," "," "," "," ","w"," "," "," "," "," "," "," "," "," "," "," "],
-            [" "," "," "," "," ","w"," "," "," "," "," "," "," "," "," "," "," "],
-            [" "," "," "," "," ","w"," "," "," "," "," "," "," "," "," "," "," "],
-            [" "," "," "," "," ","w"," "," "," "," "," "," "," "," "," "," "," "],
-            [" "," "," "," "," ","w"," "," "," "," "," "," "," "," "," "," "," "],
-            [" "," "," "," "," ","w"," ","ENEMY"," "," "," "," "," "," "," "," "," "],
-            [" "," "," "," "," ","w"," ","ENEMY"," "," "," "," "," "," "," "," "," "],
-            [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
-            [" "," "," "," "," "," "," ","ENEMY"," "," "," "," "," "," "," "," "," "],
-            [" "," "," "," "," ","w"," "," "," "," "," "," "," "," "," "," "," "],
-            [" "," "," "," "," ","w"," "," "," "," "," "," "," "," "," "," "," "]
+    level = [["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"," "," "," "," ","w"],
+            [" "," "," "," "," ","w"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," ","w"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," ","w"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," ","w"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," ","w"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," ","w"," ","ENEMY"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," ","w"," ","ENEMY"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," "," "," ","ENEMY"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," ","w"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," ","w"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "]
             ]
     pygame.init()
     clock = pygame.time.Clock()
@@ -31,14 +31,14 @@ def main():
 
     timerStart = time.time()
     pygame.display.set_caption("Rogue-Like game")
-    width = 768  # 16 tileset
+    width = 1056  # 16 tileset
     height = 576 # 12 tileset
 
     #for testing purposes it's not full in fullscreen, you can enable it tho but un-commenting line after this comment this and commenting two lines after
     #this comment it should work without problems - it just looks weird a bit (because of the black bars on th left and right - will fix one day but that would
     #mean I need to recalculate size and change levelLoader.py because idk how to make it dynamic)
-    #window = pygame.display.set_mode((width, height), pygame.FULLSCREEN | pygame.SCALED)
-    window = pygame.display.set_mode((width, height))
+    window = pygame.display.set_mode((width, height), pygame.FULLSCREEN | pygame.SCALED)
+    #window = pygame.display.set_mode((width, height))
 
     player = Character(100, 5, 0.15, 0.30, 1)
 
