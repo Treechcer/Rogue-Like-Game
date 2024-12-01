@@ -31,7 +31,7 @@ def main():
 
     timerStart = time.time()
     pygame.display.set_caption("Rogue-Like game")
-    width = 1056  # 16 tileset
+    width = 1056  # 22 tileset
     height = 576 # 12 tileset
 
     #for testing purposes it's not full in fullscreen, you can enable it tho but un-commenting line after this comment this and commenting two lines after
