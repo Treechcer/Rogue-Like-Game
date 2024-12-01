@@ -14,7 +14,7 @@ def inputHandler(position, wall, t1, t2, level, player):
             level[position[1]][position[0]] = "player"
         return position
     elif (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and t2 - t1 >= player.getSpeed():
-        if position[0] < 15:
+        if position[0] < 21:
             for i in range(len(wall)):
                 if position[0] + 1 == wall[i][1] and position[1] == wall[i][0]:
                     return position
