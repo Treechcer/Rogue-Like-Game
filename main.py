@@ -26,7 +26,7 @@ def main():
     level[position[1]][position[0]] = "player"
 
     wall = []
-
+    enemies = []
     frameCount = 0
 
     timerStart = time.time()
@@ -53,12 +53,12 @@ def main():
         position = IH.inputHandler(position, wall, timerStart, time2, level, player)
         if position[2] == True:
             moveCharacter(position, window, color=(255,255,255))
-            wall, frameCount = LL.loadLevel(window, level, frameCount, position)
+            wall, frameCount, enemies = LL.loadLevel(window, level, frameCount, position, enemies)
             draw_img(window, position)
             timerStart = time.time()
             position[2] = False
         else:
-            wall, frameCount = LL.loadLevel(window, level, frameCount, position)
+            wall, frameCount, enemies = LL.loadLevel(window, level, frameCount, position, enemies)
             draw_img(window, position)
 
         pygame.display.flip()

@@ -12,6 +12,9 @@ class Character:
         self.positionRow = positionRow
         self.positionCol = positionCol
     
+    def __str__(self):
+        return f"oject from class Character, health = {self.health}, strenght = {self.strenght}, speed = {self.speed}, attackspeed = {self.attackSpeed}, healthregenspeed = {self.healthRegenSpeed}, row = {self.positionRow}, col = {self.positionCol}"
+
     def helthPlus(self, plusHealth):
         if type(plusHealth) != int:
             raise Exception("must be an Integer")
@@ -59,7 +62,19 @@ class Character:
             raise Exception("healthRegenSpeed must be a Integer")
         self.strenght = newHealthRegenSpeed
         return self
-    
+
+    def setPositionCol(self, newPos : int):
+        if type(newPos) != int:
+            raise Exception("must be int")
+        self.positionCol += newPos
+        return self
+
+    def setPositionRow(self, newPos : int):
+        if type(newPos) != int:
+            raise Exception("must be int")
+        self.positionRow += newPos
+        return self
+
     def getStrength(self):
         return self.strenght
     
